@@ -40,7 +40,7 @@ for (let i = 0; i < testimonialsItem.length; i++) {
 
     modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
     modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
-    modalTitle.innerHTML = this.querySelector("[data-testimonials-title]").innerHTML;
+    modalTitle.textContent = this.querySelector("[data-testimonials-title]").textContent;
     modalText.innerHTML = this.querySelector("[data-testimonials-text]").innerHTML;
 
     testimonialsModalFunc();
@@ -136,6 +136,45 @@ for (let i = 0; i < formInputs.length; i++) {
 
 
 
+// portfolio modal variables
+const portfolioItems = document.querySelectorAll("[data-project-img]");
+const portfolioModalContainer = document.querySelector("[data-portfolio-modal-container]");
+const portfolioModalCloseBtn = document.querySelector("[data-portfolio-modal-close-btn]");
+const portfolioOverlay = document.querySelector("[data-portfolio-overlay]");
+
+// portfolio modal variables
+const portfolioModalImg = document.querySelector("[data-portfolio-modal-img]");
+const portfolioModalTitle = document.querySelector("[data-portfolio-modal-title]");
+const portfolioModalCategory = document.querySelector("[data-portfolio-modal-category]");
+
+// portfolio modal toggle function
+const portfolioModalFunc = function () {
+  portfolioModalContainer.classList.toggle("active");
+  portfolioOverlay.classList.toggle("active");
+}
+
+// add click event to all portfolio items
+for (let i = 0; i < portfolioItems.length; i++) {
+
+  portfolioItems[i].addEventListener("click", function () {
+
+    portfolioModalImg.src = this.querySelector("img").src;
+    portfolioModalImg.alt = this.querySelector("img").alt;
+    portfolioModalTitle.textContent = this.parentElement.querySelector(".project-title").textContent;
+    portfolioModalCategory.textContent = this.parentElement.querySelector(".project-category").textContent;
+
+    portfolioModalFunc();
+
+  });
+
+}
+
+// add click event to portfolio modal close button
+portfolioModalCloseBtn.addEventListener("click", portfolioModalFunc);
+portfolioOverlay.addEventListener("click", portfolioModalFunc);
+
+
+
 // page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
@@ -145,7 +184,7 @@ for (let i = 0; i < navigationLinks.length; i++) {
   navigationLinks[i].addEventListener("click", function () {
 
     for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
+      if (this.textContent.toLowerCase() === pages[i].dataset.page) {
         pages[i].classList.add("active");
         navigationLinks[i].classList.add("active");
         window.scrollTo(0, 0);
