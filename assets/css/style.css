@@ -951,8 +951,6 @@ main {
   100% { transform: scale(1); }
 }
 
-.project-item > a { width: 100%; }
-
 .project-img {
   position: relative;
   width: 100%;
@@ -960,6 +958,7 @@ main {
   border-radius: 16px;
   overflow: hidden;
   margin-bottom: 15px;
+  cursor: pointer;
 }
 
 .project-img::before {
@@ -974,7 +973,7 @@ main {
   transition: var(--transition-1);
 }
 
-.project-item > a:hover .project-img::before { background: hsla(0, 0%, 0%, 0.5); }
+.project-img:hover::before { background: hsla(0, 0%, 0%, 0.5); }
 
 .project-item-icon-box {
   --scale: 0.8;
@@ -993,7 +992,7 @@ main {
   transition: var(--transition-1);
 }
 
-.project-item > a:hover .project-item-icon-box {
+.project-img:hover .project-item-icon-box {
   --scale: 1;
   opacity: 1;
 }
@@ -1007,10 +1006,22 @@ main {
   transition: var(--transition-1);
 }
 
-.project-item > a:hover img { transform: scale(1.1); }
+.project-img:hover img { transform: scale(1.1); }
 
-.project-title,
-.project-category { margin-left: 10px; }
+.project-content { margin-left: 10px; }
+
+.project-title-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  margin-bottom: 4px;
+  transition: var(--transition-1);
+}
+
+.project-title-link:hover { color: var(--orange-yellow-crayola); }
+
+.project-title-link:hover .project-title { color: var(--orange-yellow-crayola); }
 
 .project-title {
   color: var(--white-2);
@@ -1018,12 +1029,68 @@ main {
   font-weight: var(--fw-400);
   text-transform: capitalize;
   line-height: 1.3;
+  transition: var(--transition-1);
+}
+
+.project-title-link ion-icon {
+  font-size: 16px;
+  color: var(--orange-yellow-crayola);
 }
 
 .project-category {
   color: var(--light-gray-70);
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
+}
+
+
+/**
+ * #portfolio-modal
+ */
+
+.portfolio-modal .portfolio-modal-content {
+  background: var(--eerie-black-2);
+  position: relative;
+  padding: 30px;
+  margin: 15px;
+  border: 1px solid var(--jet);
+  border-radius: 20px;
+  box-shadow: var(--shadow-5);
+  transform: scale(1.2);
+  opacity: 0;
+  transition: var(--transition-1);
+  z-index: 2;
+  max-width: 800px;
+  width: 100%;
+}
+
+.modal-container.active .portfolio-modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.portfolio-modal-img-wrapper {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.portfolio-modal-img-wrapper img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-height: 70vh;
+}
+
+.portfolio-modal-info .modal-title {
+  margin-bottom: 8px;
+  font-size: var(--fs-2);
+}
+
+.portfolio-modal-info .project-category {
+  font-size: var(--fs-5);
+  color: var(--orange-yellow-crayola);
 }
 
 
